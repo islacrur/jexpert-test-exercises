@@ -12,7 +12,7 @@ export async function obtenerDatos(id) {
   await esperarTiempo(50)
   
   if (!id) {
-    throw new Error('ID es requerido')
+    throw new Error('ID no proporcionado')
   }
   
   return {

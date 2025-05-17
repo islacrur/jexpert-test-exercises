@@ -51,4 +51,9 @@ export class DB {
     if (!this.conectado) throw new Error('DB no conectada')
     return [...this.datos]
   }
+
+  obtenerPorId(id) {
+    if (!this.conectado) throw new Error('DB no conectada')
+    return this.datos.find(dato => dato.id === id) || null
+  }
 } 
