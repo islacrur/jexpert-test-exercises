@@ -1,0 +1,22 @@
+{
+  "name": "ejercicios-vitest",
+  "version": "1.0.0",
+  "description": "Ejercicios de testing con Vitest",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "vitest",
+    "test:ui": "vitest --ui"
+  },
+  "keywords": [
+    "testing",
+    "vitest",
+    "javascript"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "vitest": "^1.2.1",
+    "@vitest/ui": "^1.2.1"
+  }
+}
