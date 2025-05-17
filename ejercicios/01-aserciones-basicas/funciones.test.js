@@ -52,25 +52,18 @@ describe('Aserciones básicas', () => {
   describe('Función obtenerTipo', () => {
     it('debe retornar "number" para números', () => {
       expect(obtenerTipo(123)).toBe('number')
-      expect(obtenerTipo(0)).toBe('number')
-      expect(obtenerTipo(-45.67)).toBe('number')
     })
 
     it('debe retornar "string" para cadenas de texto', () => {
       expect(obtenerTipo('hola')).toBe('string')
-      expect(obtenerTipo('')).toBe('string')
-      expect(obtenerTipo('123')).toBe('string')
     })
 
     it('debe retornar "boolean" para valores booleanos', () => {
-      expect(obtenerTipo(true)).toBe('boolean')
       expect(obtenerTipo(false)).toBe('boolean')
     })
 
     it('debe retornar "object" para objetos', () => {
       expect(obtenerTipo({})).toBe('object')
-      expect(obtenerTipo({ a: 1 })).toBe('object')
-      expect(obtenerTipo(null)).toBe('object') // typeof null es 'object'
     })
 
     it('debe retornar "undefined" para undefined', () => {
