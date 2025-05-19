@@ -2,41 +2,45 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import { RandomNumberService } from './services/randomNumber'
 
+// Tipos para las props del componente
 interface AppProps {
   title?: string;
   initialCount?: number;
 }
 
-function App({ title = 'Adivina el Número', initialCount = 5 }: AppProps) {
-  const [count, setCount] = useState(initialCount);
-  const [message, setMessage] = useState('Intenta adivinar un número entre 1 y 10');
+// Definir tipos para los estados
+type MessageType = 'neutral' | 'success' | 'error';
+
+const App: React.FC<AppProps> = ({ title = 'Adivina el Número', initialCount = 5 }) => {
+  const [count, setCount] = useState<number>(initialCount);
+  const [message, setMessage] = useState<string>('Intenta adivinar un número entre 1 y 10');
   const [targetNumber, setTargetNumber] = useState<number>(0);
-  const [isCheckDisabled, setIsCheckDisabled] = useState(false);
-  const [messageType, setMessageType] = useState<'neutral' | 'success' | 'error'>('neutral');
+  const [isCheckDisabled, setIsCheckDisabled] = useState<boolean>(false);
+  const [messageType, setMessageType] = useState<MessageType>('neutral');
   
   useEffect(() => {
     // Generar un número aleatorio al inicio
     generateNewNumber();
   }, []);
 
-  const generateNewNumber = () => {
+  const generateNewNumber = (): void => {
     const randomNumber = RandomNumberService.getRandomNumber();
     setTargetNumber(randomNumber);
   };
 
-  const increment = () => {
+  const increment = (): void => {
     if (count < 10) {
       setCount(count + 1);
     }
   };
 
-  const decrement = () => {
+  const decrement = (): void => {
     if (count > 1) {
       setCount(count - 1);
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (): void => {
     setIsCheckDisabled(true);
     
     if (count === targetNumber) {
@@ -48,7 +52,7 @@ function App({ title = 'Adivina el Número', initialCount = 5 }: AppProps) {
     }
   };
 
-  const handleReset = () => {
+  const handleReset = (): void => {
     generateNewNumber();
     setCount(initialCount);
     setMessage('Intenta adivinar un número entre 1 y 10');
@@ -100,6 +104,6 @@ function App({ title = 'Adivina el Número', initialCount = 5 }: AppProps) {
       <p className={`result-message ${messageType}`}>{message}</p>
     </div>
   );
-}
+};
 
 export default App

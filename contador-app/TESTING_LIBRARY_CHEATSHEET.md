@@ -1,9 +1,5 @@
 # Cheatsheet de Testing Library
 
-## Conceptos básicos
-
-Testing Library es una librería para tests que te permite probar componentes de React como lo haría un usuario real. Se enfoca en probar el comportamiento en lugar de los detalles de implementación.
-
 ## Funciones Principales
 
 ### Renderizado
