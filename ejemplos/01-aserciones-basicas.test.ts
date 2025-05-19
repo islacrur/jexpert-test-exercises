@@ -26,7 +26,6 @@ export function crearProducto(nombre: string, precio: number): Producto {
 
 import { describe, it, expect } from 'vitest';
 
-// Aquí evitamos reimportar las funciones y tipos que ya están definidos arriba
 describe('Aserciones básicas', () => {
   
   describe('calcularPrecioConImpuestos', () => {
@@ -74,7 +73,7 @@ describe('Aserciones básicas', () => {
     });
 
     it('debe tener una fecha válida', () => {
-      // Verifica tipo de objeto
+      // Verifica que el valor es una instancia de la clase Date
       expect(producto.fechaCreacion).toBeInstanceOf(Date);
     });
   });

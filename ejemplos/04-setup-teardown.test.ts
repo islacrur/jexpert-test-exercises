@@ -90,8 +90,8 @@ describe('Setup y Teardown', () => {
   
   /**
    * beforeAll:
-   * Se ejecuta una vez antes de todas las pruebas en este bloque
-   * Ideal para inicializar recursos que se compartirán entre pruebas
+   * Se ejecuta una vez antes de todos los tests en este bloque
+   * Ideal para inicializar recursos que se compartirán entre tests
    */
   beforeAll(async () => {
     console.log('✨ Inicializando base de datos para todas las pruebas');
@@ -102,7 +102,7 @@ describe('Setup y Teardown', () => {
   
   /**
    * afterAll:
-   * Se ejecuta una vez después de todas las pruebas en este bloque
+   * Se ejecuta una vez después de todos los tests del bloque
    * Ideal para limpiar recursos globales
    */
   afterAll(async () => {
@@ -119,8 +119,8 @@ describe('Setup y Teardown', () => {
     
     /**
      * beforeEach:
-     * Se ejecuta antes de cada prueba dentro de este describe
-     * Ideal para preparar el estado inicial que cada prueba necesita
+     * Se ejecuta antes de cada test dentro de este describe
+     * Ideal para preparar el estado inicial que cada test necesita
      */
     beforeEach(() => {
       console.log('🔄 Preparando datos para la siguiente prueba');
@@ -130,8 +130,8 @@ describe('Setup y Teardown', () => {
     
     /**
      * afterEach:
-     * Se ejecuta después de cada prueba dentro de este describe
-     * Ideal para limpiar cambios hechos durante la prueba
+     * Se ejecuta después de cada test dentro de este describe
+     * Ideal para limpiar cambios hechos durante el test
      */
     afterEach(() => {
       console.log('🧼 Limpiando después de la prueba');

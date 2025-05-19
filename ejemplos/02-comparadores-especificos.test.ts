@@ -27,11 +27,6 @@ export function crearUsuario(nombre: string, edad: number): Usuario {
   };
 }
 
-/**
- * Genera un array con números impares
- * @param cantidad - Cantidad de números a generar
- * @returns Array de números impares
- */
 export function generarNumerosImpares(cantidad: number): number[] {
   const numeros: number[] = [];
   let numero = 1;
@@ -44,10 +39,6 @@ export function generarNumerosImpares(cantidad: number): number[] {
   return numeros;
 }
 
-/**
- * Lanza un error con un mensaje personalizado
- * @param mensaje - Mensaje de error
- */
 export function lanzarError(mensaje: string): never {
   throw new Error(mensaje);
 }
