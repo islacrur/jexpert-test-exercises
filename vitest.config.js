@@ -2,7 +2,7 @@ import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
   test: {
-    include: ['ejercicios/**/*.test.js'],
+    include: ['**/*.test.js', '**/*.test.ts'],
     globals: true
   }
 }) 
