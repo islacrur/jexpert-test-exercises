@@ -1,28 +1,26 @@
-// Definición de un servicio API simple (es solo un objeto, no una clase)
-export interface Usuario {
+export interface User {
   id: number;
-  nombre: string;
+  name: string;
 }
 
-// Servicio API como objeto simple
-export const apiServicio = {
-  obtenerUsuario(id: number): Usuario {
+export const apiService = {
+  getUser(id: number): User {
     // En una aplicación real, esto haría una llamada HTTP
     console.log(`Llamada real a la API para obtener usuario ${id}`);
-    return { id, nombre: 'Usuario ' + id };
+    return { id, name: 'Usuario ' + id };
   },
   
-  guardarUsuario(usuario: Usuario): boolean {
+  saveUser(user: User): boolean {
     // En una aplicación real, esto enviaría datos al servidor
-    console.log(`Guardando usuario ${usuario.id} en la API`);
+    console.log(`Guardando usuario ${user.id} en la API`);
     return true;
   }
 };
 
 // Función que usa el servicio
-export function mostrarDatosUsuario(id: number, api: typeof apiServicio): string {
-  const usuario = api.obtenerUsuario(id);
-  return `Usuario: ${usuario.nombre} (ID: ${usuario.id})`;
+export function displayUserData(id: number, api: typeof apiService): string {
+  const user = api.getUser(id);
+  return `Usuario: ${user.name} (ID: ${user.id})`;
 }
 
 // ========= TESTS =========
@@ -35,51 +33,51 @@ describe('Mocking de Servicios API', () => {
   it('debe crear un mock completo del servicio API', () => {
     // MOCK: Creamos un mock completo del servicio
     const apiMock = {
-      obtenerUsuario: vi.fn().mockReturnValue({ id: 1, nombre: 'Usuario Mock' }),
-      guardarUsuario: vi.fn().mockReturnValue(true)
+      getUser: vi.fn().mockReturnValue({ id: 1, name: 'Usuario Mock' }),
+      saveUser: vi.fn().mockReturnValue(true)
     };
     
     // Usamos la función con el mock
-    const resultado = mostrarDatosUsuario(1, apiMock);
+    const result = displayUserData(1, apiMock);
     
     // Verificamos el resultado
-    expect(resultado).toBe('Usuario: Usuario Mock (ID: 1)');
+    expect(result).toBe('Usuario: Usuario Mock (ID: 1)');
     
     // Verificamos que se llamó al método correcto
-    expect(apiMock.obtenerUsuario).toHaveBeenCalledTimes(1);
-    expect(apiMock.obtenerUsuario).toHaveBeenCalledWith(1);
+    expect(apiMock.getUser).toHaveBeenCalledTimes(1);
+    expect(apiMock.getUser).toHaveBeenCalledWith(1);
   });
   
   // Ejemplo 2: Usando vi.spyOn para espiar un método real
   it('debe espiar un método real con spyOn', () => {
     // Creamos una copia del servicio real
-    const apiCopia = { ...apiServicio };
+    const apiCopy = { ...apiService };
     
     // MOCK: Espiamos el método real
-    const obtenerUsuarioSpy = vi.spyOn(apiCopia, 'obtenerUsuario');
+    const getUserSpy = vi.spyOn(apiCopy, 'getUser');
     
     // Usamos la función con el servicio espiado
-    mostrarDatosUsuario(2, apiCopia);
+    displayUserData(2, apiCopy);
     
-    // Verificamos que se llamó al método
-    expect(obtenerUsuarioSpy).toHaveBeenCalledTimes(1);
-    expect(obtenerUsuarioSpy).toHaveBeenCalledWith(2);
+    // Verificamos que se ha llamado a la función
+    expect(getUserSpy).toHaveBeenCalledTimes(1);
+    expect(getUserSpy).toHaveBeenCalledWith(2);
   });
   
   // Ejemplo 3: Usando mockImplementation para cambiar el comportamiento
   it('debe cambiar la implementación con mockImplementation', () => {
     // Creamos una copia del servicio real
-    const apiCopia = { ...apiServicio };
+    const apiCopy = { ...apiService };
     
-    // MOCK: Reemplazamos la implementación del método
-    vi.spyOn(apiCopia, 'obtenerUsuario').mockImplementation((id) => {
-      return { id, nombre: 'Nombre Modificado' };
+    // MOCK: Reemplazamos la implementación de la función
+    vi.spyOn(apiCopy, 'getUser').mockImplementation((id) => {
+      return { id, name: 'Nombre Modificado' };
     });
     
     // Usamos la función con el servicio modificado
-    const resultado = mostrarDatosUsuario(3, apiCopia);
+    const result = displayUserData(3, apiCopy);
     
     // Verificamos que está usando la nueva implementación
-    expect(resultado).toBe('Usuario: Nombre Modificado (ID: 3)');
+    expect(result).toBe('Usuario: Nombre Modificado (ID: 3)');
   });
 }); 
