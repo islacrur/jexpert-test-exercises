@@ -30,3 +30,35 @@ describe('Botón decremento - Funcionalidad Básica', () => {
     expect(counterValue).toHaveTextContent("4");
   });
 });
+
+describe('Mínimo Valor - Funcionalidad Básica', () => {
+  test('Comprueba que el mínimo valor es 1', async () => {
+    render(<App initialCount={1}/>);
+    const counterValue = screen.getByText('1'); // Valor inicial por defecto
+    const button = screen.getByText('-')
+    await userEvent.click(button);   
+    await userEvent.click(button);   
+   expect(counterValue).toHaveTextContent("1");
+  });
+});
+
+
+describe('Máximo valor - Funcionalidad Básica', () => {
+  test('Comprueba que el máximo valor es 10', async () => {
+    render(<App initialCount={10}/>);
+    const counterValue = screen.getByText('10'); // Valor inicial por defecto
+    const button = screen.getByText('+')
+    await userEvent.click(button);   
+    await userEvent.click(button);   
+   expect(counterValue).toHaveTextContent("10");
+  });
+});
+
+describe('Selector Numérico - Funcionalidad Básica', () => {
+  test('El título de la aplicación debe ser personalizable', () => {
+    render(<App title='Holakjhdkas'/>);
+    const counterValue = screen.getByRole('heading', {level:1}); // Valor inicial por defecto   
+    expect(counterValue).toHaveTextContent("Holakjhdkas");
+  });
+});
+
